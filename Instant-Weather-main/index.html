@@ -17,8 +17,7 @@
       src="https://kit.fontawesome.com/0acb75a9e8.js"
       crossorigin="anonymous"
     ></script>
-    <script defer src="./js/weatherCard.js"></script>
-    <script defer src="./js/app.js"></script>
+    <script defer src="./js/main.js"></script>
     <title>Instant Weather</title>
   </head>
   <body>
@@ -29,34 +28,35 @@
     </header>
     <main>
       <section id="cityForm">
-        <form id="cityForm_form" action="dummy">
+        <form id="cityForm_form">
           <label for="code-postal">Saisissez un code postal</label>
           <input
             type="text"
             id="code-postal"
             placeholder="Entrez un code postal..."
+            required
           />
           <label
             for="communeSelect"
             class="sr-only"
-            aria-label="Choix de la commune"
             >Sélectionnez la commune</label
           >
+          <select id="communeSelect" aria-label="Choix de la commune"></select>
+          
           <label for="daySlider">Nombre de jours de prévision : <span id="sliderValue">1</span></label>
           <input type="range" id="daySlider" min="1" max="7" value="1" />
+          
           <fieldset id="optionsFieldset">
             <legend>Informations supplémentaires à afficher</legend>
-            <label><input type="checkbox" id="latOption" /> Latitude</label><br />
-            <label><input type="checkbox" id="lonOption" /> Longitude</label><br />
-            <label><input type="checkbox" id="rainOption" /> Cumul de pluie (mm)</label><br />
-            <label><input type="checkbox" id="windOption" /> Vent moyen (km/h)</label><br />
+            <label><input type="checkbox" id="latOption" /> Latitude</label>
+            <label><input type="checkbox" id="lonOption" /> Longitude</label>
+            <label><input type="checkbox" id="rainOption" /> Cumul de pluie (mm)</label>
+            <label><input type="checkbox" id="windOption" /> Vent moyen (km/h)</label>
             <label><input type="checkbox" id="dirOption" /> Direction du vent (°)</label>
           </fieldset>
           
-
-          <select id="communeSelect"></select>
+          <button type="submit" id="validationButton">Valider</button>
         </form>
-        <button id="validationButton">Valider</button>
       </section>
       <section id="weatherInformation">
         <!-- Ajouter les informations météo ici -->

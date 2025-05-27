@@ -1,8 +1,11 @@
 :root {
-  --color-primary: #f5fcfc;
-  --color-secondary: #0f3359;
+  --color-primary: #000000;
+  --color-secondary: #1e3a8a;
+  --color-accent: #3b82f6;
   --color-font: #ffffff;
-  --color-shadow: #0e061c;
+  --color-shadow: rgba(30, 58, 138, 0.15);
+  --gradient-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-card: linear-gradient(145deg, #1e3a8a 0%, #3b82f6 100%);
 }
 
 * {
@@ -14,37 +17,71 @@
 body {
   margin: auto;
   max-width: 1280px;
-  background-color: var(--color-primary);
+  background: var(--gradient-bg);
+  min-height: 100vh;
   font-size: 1.25rem;
   font-family: "Roboto", sans-serif;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23ffffff" fill-opacity="0.05"><circle cx="30" cy="30" r="2"/></g></svg>');
+  pointer-events: none;
+  z-index: -1;
 }
 
 header {
-  background-color: var(--color-secondary);
+  background: var(--gradient-card);
   margin: 20px auto;
   width: 80%;
-  border-radius: 15px;
-  padding: 80px 20px;
+  border-radius: 20px;
+  padding: 60px 20px;
   text-align: center;
   color: var(--color-font);
+  box-shadow: 0 20px 40px var(--color-shadow);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: slideDown 0.8s ease-out;
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 header p {
-  margin: 20px auto;
+  margin: 15px auto;
+  opacity: 0.9;
 }
 
 h1 {
   font-size: 6vw;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: 10px;
 }
 
 #cityForm {
   text-align: center;
-  background-color: var(--color-primary);
-  border: 2px solid var(--color-secondary);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   margin: 20px auto;
   width: 80%;
-  border-radius: 15px;
-  padding: 10px;
+  border-radius: 20px;
+  padding: 30px 20px;
+  box-shadow: 0 15px 35px var(--color-shadow);
+  animation: slideUp 0.8s ease-out 0.3s both;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 #cityForm_form {
@@ -52,11 +89,26 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 15px;
 }
 
 #cityForm_form input,
 #cityForm_form select {
   min-width: 280px;
+  padding: 12px 16px;
+  border: 2px solid var(--color-accent);
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+#cityForm_form input:focus,
+#cityForm_form select:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  transform: translateY(-2px);
 }
 
 .sr-only {
@@ -74,72 +126,168 @@ h1 {
 #validationButton {
   display: none;
   margin: 20px auto;
-  padding: 10px 20px;
-  background-color: var(--color-secondary);
+  padding: 12px 30px;
+  background: var(--gradient-card);
   color: var(--color-font);
-  border: 2px solid var(--color-primary);
-  border-radius: 5px;
+  border: none;
+  border-radius: 25px;
   cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
 }
 
 #validationButton:hover {
-  background-color: var(--color-primary);
-  border: 2px solid var(--color-secondary);
-  color: var(--color-secondary);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(59, 130, 246, 0.4);
+}
+
+#validationButton:active {
+  transform: translateY(-1px);
 }
 
 #communeSelect {
   display: none;
   margin-top: 10px;
-  padding: 5px;
-  z-index: 999;
+  margin-bottom: 15px;
+  order: 2;
 }
 
 #code-postal {
   margin-top: 10px;
-  padding: 5px;
-  border: 1px solid #ccc;
+  order: 1;
+}
+
+#daySlider {
+  width: 280px;
+  margin-top: 10px;
+  order: 3;
+  height: 8px;
   border-radius: 5px;
+  background: #ddd;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+#daySlider:hover {
+  opacity: 1;
+}
+
+#daySlider::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+#sliderValue {
+  font-weight: bold;
+  color: var(--color-accent);
+  margin-left: 8px;
+}
+
+label[for="daySlider"] {
+  order: 3;
+  margin-top: 15px;
+  color: var(--color-secondary);
+  font-weight: 500;
+}
+
+#optionsFieldset {
+  margin-top: 20px;
+  padding: 20px;
+  border: 2px solid var(--color-accent);
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.8);
+  width: 280px;
+  text-align: left;
+  order: 4;
+  backdrop-filter: blur(10px);
+}
+
+#optionsFieldset legend {
+  font-weight: 600;
+  color: var(--color-secondary);
+  padding: 0 10px;
+}
+
+#optionsFieldset label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+#optionsFieldset label:hover {
+  color: var(--color-accent);
+}
+
+#optionsFieldset input[type="checkbox"] {
+  margin-right: 10px;
+  margin-left: 0;
+  min-width: auto;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: var(--color-accent);
 }
 
 #error-message {
-  color: red;
+  color: #ef4444;
   text-align: center;
   font-size: 16px;
   font-weight: bold;
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
 }
 
 #weatherInformation {
   display: none;
   flex-direction: column;
   align-items: center;
-  background-color: var(--color-primary);
-  border: 2px solid var(--color-secondary);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   margin: 20px auto;
   width: 95%;
-  border-radius: 15px;
-  padding: 20px;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 20px 40px var(--color-shadow);
 }
 
 .weather-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--color-secondary);
+  background: var(--gradient-card);
   color: var(--color-font);
-  border: 2px solid var(--color-secondary);
-  border-radius: 12px;
-  padding: 20px;
+  border: none;
+  border-radius: 20px;
+  padding: 30px;
   margin: 15px;
   width: 100%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 15px 35px rgba(30, 58, 138, 0.2);
   line-height: 1.8;
   font-size: 1.1rem;
-  transition: transform 0.2s ease;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .weather-card:hover {
-  transform: scale(1.01);
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px rgba(30, 58, 138, 0.3);
 }
 
 .weather-content {
@@ -150,93 +298,77 @@ h1 {
 }
 
 .emoji {
-  font-size: 3rem;
-  margin-bottom: 15px;
+  font-size: 4rem;
+  margin-bottom: 20px;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
 }
 
 .reloadButton {
   width: 280px;
-  margin: 20px auto;
-  padding: 10px 20px;
+  margin: 30px auto;
+  padding: 15px 25px;
   text-align: center;
-  background-color: var(--color-secondary);
+  background: var(--gradient-card);
   color: var(--color-font);
-  border: 2px solid var(--color-primary);
-  border-radius: 5px;
+  border: none;
+  border-radius: 25px;
   cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
 }
 
 .reloadButton:hover {
-  background-color: var(--color-primary);
-  border: 2px solid var(--color-secondary);
-  color: var(--color-secondary);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(59, 130, 246, 0.4);
 }
-
-#daySlider {
-  width: 280px;
-  margin-top: 10px;
-}
-
-#sliderValue {
-  font-weight: bold;
-  margin-left: 5px;
-}
-
-#optionsFieldset {
-  margin-top: 15px;
-  padding: 10px;
-  border: 1px solid var(--color-secondary);
-  border-radius: 8px;
-  background-color: #ffffff;
-  width: 280px;
-  text-align: left;
-}
-
-#optionsFieldset legend {
-  font-weight: bold;
-  color: var(--color-secondary);
-}
-
-/* ----------- TABS (onglets jours) ------------ */
 
 .tab-container {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  gap: 10px;
 }
 
 .tab-button {
-  padding: 10px 15px;
-  margin: 5px;
-  background-color: var(--color-secondary);
-  color: var(--color-font);
-  border: 2px solid var(--color-primary);
-  border-radius: 5px;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--color-secondary);
+  border: 2px solid transparent;
+  border-radius: 20px;
   cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
 }
 
 .tab-button.active {
-  background-color: var(--color-primary);
-  color: var(--color-secondary);
-  border-color: var(--color-secondary);
+  background: var(--color-accent);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
 }
 
 .tab-button:hover {
-  opacity: 0.85;
+  background: rgba(59, 130, 246, 0.1);
+  border-color: var(--color-accent);
 }
-
-/* ------------------- MEDIA QUERIES ----------------------- */
 
 @media screen and (max-width: 1024px) {
   #weatherInformation {
     flex-wrap: wrap;
   }
-
   .weather-card {
     width: 100%;
   }
-
   #cityForm {
     width: 95%;
   }
@@ -245,6 +377,12 @@ h1 {
 @media screen and (max-width: 425px) {
   .tab-button {
     font-size: 0.9rem;
-    padding: 8px;
+    padding: 10px 15px;
+  }
+  h1 {
+    font-size: 8vw;
+  }
+  header {
+    padding: 40px 15px;
   }
 }
