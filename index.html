@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./favicon/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/0acb75a9e8.js" crossorigin="anonymous"></script>
+    <script defer src="./js/main.js"></script>
+    <title>☀️ Instant Weather - Météo en temps réel</title>
+  </head>
+  <body>
+    <header class="glass-morphism">
+      <div class="header-content">
+        <div class="logo-container">
+          <i class="fas fa-cloud-sun weather-icon"></i>
+          <h1>INSTANT WEATHER</h1>
+        </div>
+        <p class="subtitle">Votre météo en un clic</p>
+        <p class="description">Découvrez les prévisions météorologiques de votre commune avec précision</p>
+      </div>
+    </header>
+
+    <main>
+      <div id="cityForm" class="glass-morphism form-container">
+        <form id="cityForm_form">
+          <div class="input-group">
+            <label for="code-postal">
+              <i class="fas fa-map-marker-alt"></i>
+              Code postal
+            </label>
+            <input
+              type="text"
+              id="code-postal"
+              placeholder="Entrez votre code postal..."
+              required
+            >
+          </div>
+
+          <div class="input-group">
+            <label for="communeSelect" class="sr-only">Sélectionnez la commune</label>
+            <select id="communeSelect" aria-label="Choix de la commune">
+              <option value="">Choisissez votre commune</option>
+            </select>
+          </div>
+          
+          <div class="input-group slider-group">
+            <label for="daySlider">
+              <i class="fas fa-calendar-alt"></i>
+              Nombre de jours : <span id="sliderValue" class="slider-value">1</span>
+            </label>
+            <input type="range" id="daySlider" min="1" max="7" value="1">
+          </div>
+          
+          <fieldset id="optionsFieldset" class="glass-morphism">
+            <legend>
+              <i class="fas fa-cog"></i>
+              Options d'affichage
+            </legend>
+            <div class="options-grid">
+              <label class="option-item">
+                <input type="checkbox" id="latOption">
+                <span class="checkmark"></span>
+                <i class="fas fa-globe-americas"></i>
+                Latitude
+              </label>
+              <label class="option-item">
+                <input type="checkbox" id="lonOption">
+                <span class="checkmark"></span>
+                <i class="fas fa-globe-americas"></i>
+                Longitude
+              </label>
+              <label class="option-item">
+                <input type="checkbox" id="rainOption">
+                <span class="checkmark"></span>
+                <i class="fas fa-tint"></i>
+                Cumul de pluie
+              </label>
+              <label class="option-item">
+                <input type="checkbox" id="windOption">
+                <span class="checkmark"></span>
+                <i class="fas fa-wind"></i>
+                Vitesse du vent
+              </label>
+              <label class="option-item">
+                <input type="checkbox" id="dirOption">
+                <span class="checkmark"></span>
+                <i class="fas fa-compass"></i>
+                Direction du vent
+              </label>
+            </div>
+          </fieldset>
+          
+          <button type="submit" id="validationButton" class="btn-primary">
+            <i class="fas fa-search"></i>
+            <span>Obtenir la météo</span>
+          </button>
+        </form>
+      </div>
+
+      <div id="weatherInformation" class="weather-section">
+      </div>
+    </main>
+    <div id="loadingSpinner" class="loading-spinner">
+      <div class="spinner"></div>
+      <p>Chargement des données météo...</p>
+    </div>
+  </body>
+</html>
