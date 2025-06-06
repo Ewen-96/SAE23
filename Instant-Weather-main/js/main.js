@@ -1,4 +1,3 @@
-// JavaScript Optimisé - Taille réduite avec bouton nouvelle recherche corrigé
 const CONFIG = {
   API_URLS: {
     COMMUNES: 'https://geo.api.gouv.fr/communes',
@@ -7,7 +6,6 @@ const CONFIG = {
   API_TOKEN: '4bba169b3e3365061d39563419ab23e5016c0f838ba282498439c41a00ef1091'
 };
 
-// Éléments DOM
 const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => document.querySelectorAll(sel);
 
@@ -23,7 +21,6 @@ const el = {
   cityFormContainer: $('#cityForm')
 };
 
-// Utilitaires
 const utils = {
   toggleLoading: (show = true) => el.loadingSpinner.style.display = show ? 'flex' : 'none',
   
@@ -51,7 +48,6 @@ const utils = {
   }
 };
 
-// API Service
 const api = {
   async fetchCommunes(codePostal) {
     try {
@@ -84,7 +80,6 @@ const api = {
   }
 };
 
-// Utilitaires météo
 const weather = {
   formatSunHours: (hours) => hours + (hours > 1 ? ' heures' : ' heure'),
   
@@ -113,7 +108,6 @@ const weather = {
   getDayName: (i) => i === 0 ? 'Aujourd\'hui' : i === 1 ? 'Demain' : `Dans ${i} jours`
 };
 
-// Gestionnaire d'affichage
 const display = {
   displayCommunes(communes) {
     el.communeSelect.innerHTML = '<option value="">Choisissez votre commune</option>';
@@ -252,7 +246,6 @@ const display = {
       el.weatherSection.appendChild(card);
     }
     
-    // Créer et ajouter le bouton nouvelle recherche
     const reloadBtn = this.createReloadButton();
     document.body.appendChild(reloadBtn);
     
@@ -261,7 +254,6 @@ const display = {
   }
 };
 
-// Gestionnaire d'événements
 const events = {
   init() {
     this.setupForm();
@@ -345,12 +337,10 @@ const events = {
   }
 };
 
-// Initialisation
 document.addEventListener('DOMContentLoaded', () => {
   console.log('🌤️ App Météo initialisée');
   events.init();
-  
-  // Vérifier les éléments
+
   Object.entries(el).forEach(([key, element]) => {
     if (!element) console.warn(`⚠️ Élément manquant: ${key}`);
   });

@@ -1,16 +1,13 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./favicon/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="./css/style.css" />
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <!-- Font Awesome Kit -->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/0acb75a9e8.js" crossorigin="anonymous"></script>
     <script defer src="./js/main.js"></script>
     <title>☀️ Instant Weather - Météo en temps réel</title>
@@ -28,7 +25,7 @@
     </header>
 
     <main>
-      <section id="cityForm" class="glass-morphism form-container">
+      <div id="cityForm" class="glass-morphism form-container">
         <form id="cityForm_form">
           <div class="input-group">
             <label for="code-postal">
@@ -40,7 +37,7 @@
               id="code-postal"
               placeholder="Entrez votre code postal..."
               required
-            />
+            >
           </div>
 
           <div class="input-group">
@@ -55,7 +52,7 @@
               <i class="fas fa-calendar-alt"></i>
               Nombre de jours : <span id="sliderValue" class="slider-value">1</span>
             </label>
-            <input type="range" id="daySlider" min="1" max="7" value="1" />
+            <input type="range" id="daySlider" min="1" max="7" value="1">
           </div>
           
           <fieldset id="optionsFieldset" class="glass-morphism">
@@ -65,31 +62,31 @@
             </legend>
             <div class="options-grid">
               <label class="option-item">
-                <input type="checkbox" id="latOption" />
+                <input type="checkbox" id="latOption">
                 <span class="checkmark"></span>
                 <i class="fas fa-globe-americas"></i>
                 Latitude
               </label>
               <label class="option-item">
-                <input type="checkbox" id="lonOption" />
+                <input type="checkbox" id="lonOption">
                 <span class="checkmark"></span>
                 <i class="fas fa-globe-americas"></i>
                 Longitude
               </label>
               <label class="option-item">
-                <input type="checkbox" id="rainOption" />
+                <input type="checkbox" id="rainOption">
                 <span class="checkmark"></span>
                 <i class="fas fa-tint"></i>
                 Cumul de pluie
               </label>
               <label class="option-item">
-                <input type="checkbox" id="windOption" />
+                <input type="checkbox" id="windOption">
                 <span class="checkmark"></span>
                 <i class="fas fa-wind"></i>
                 Vitesse du vent
               </label>
               <label class="option-item">
-                <input type="checkbox" id="dirOption" />
+                <input type="checkbox" id="dirOption">
                 <span class="checkmark"></span>
                 <i class="fas fa-compass"></i>
                 Direction du vent
@@ -102,14 +99,11 @@
             <span>Obtenir la météo</span>
           </button>
         </form>
-      </section>
+      </div>
 
-      <section id="weatherInformation" class="weather-section">
-        <!-- Weather information will be displayed here -->
-      </section>
+      <div id="weatherInformation" class="weather-section">
+      </div>
     </main>
-
-    <!-- Loading spinner -->
     <div id="loadingSpinner" class="loading-spinner">
       <div class="spinner"></div>
       <p>Chargement des données météo...</p>
